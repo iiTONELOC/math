@@ -1,5 +1,5 @@
 import mod from '../mod/';
-import * as path from 'path';
+import { normalizePath } from '../../../utils';
 
 /**
  * x is congruent to y mod m if x mod m = y mod m
@@ -21,17 +21,21 @@ import * as path from 'path';
  * ```
  *
  * ```ts
- * import congruence from './congruence';
- *
- * or
- * const congruence = require('./congruence').default;
+ * // as an es module
+ * import {congruence} from './lib/number_systems';
+ * 
+ * // as a commonjs module
+ * const {congruence} = require('./lib/number_systems');
  *
  * const isCongruent = congruence(17, 88, 11);
  * console.log(isCongruent); // false
+ * ```
  *
- * as a cli tool:
- * node lib/congruence/index.js 17 88 11
- * // false: 17 is not congruent to 88 mod 11
+ * @example
+ * ```bash
+ * # as a cli tool:
+ * node lib/number_systems/algorithms/congruence/index.js 17 88 11
+ * # false: 17 is not congruent to 88 mod 11
  * ```
  */
 export default function congruence(x: number, y: number, m: number): boolean {
@@ -39,9 +43,9 @@ export default function congruence(x: number, y: number, m: number): boolean {
 }
 
 // cli api
-
-if (process.argv[1]?.includes(path.normalize('congruence/index.ts')) ||
-    process.argv[1]?.includes(path.normalize('congruence/index.js'))) {
+// node lib/number_systems/algorithms/congruence/index.js 17 88 11
+if (process.argv[1]?.includes(normalizePath('congruence/index.ts')) ||
+    process.argv[1]?.includes(normalizePath('congruence/index.js'))) {
 
     const x: number = parseInt(process.argv[2], 10);
     const y: number = parseInt(process.argv[3], 10);
@@ -49,5 +53,5 @@ if (process.argv[1]?.includes(path.normalize('congruence/index.ts')) ||
 
     const isCongruent: boolean = congruence(x, y, m);
 
-    console.log(`${isCongruent}: ${x} is congruent to ${y} mod ${m}`);
+    console.log(`${isCongruent}: ${x} is ${isCongruent ? 'congruent' : 'not congruent'} to ${y} mod ${m}`);
 }

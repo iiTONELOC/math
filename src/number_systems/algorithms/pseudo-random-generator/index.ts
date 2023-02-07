@@ -1,9 +1,9 @@
-import * as path from 'path';
+import { normalizePath } from '../../../utils';
 
 /**
  * Generates a pseudo-random number using the Linear Congruential Generator
  * algorithm.
- * 
+ *
  * Creates a generator function that can be used to generate a pseudo-random
  * number.
  *
@@ -20,26 +20,35 @@ import * as path from 'path';
  * @throws Error - if c is not an integer
  * @throws Error - if m is not an integer
  * @throws Error - if m is less than or equal to 0
- * 
+ *
  * @example
- * 
+ *
  * ```ts
- * import randomNumberGenerator from './randomNumberGenerator';
- * or
- * const randomNumberGenerator = require('./randomNumberGenerator').default;
- * 
- * const generator = randomNumberGenerator({ seed: 0, a: 1103515245, c: 12345, m: 2 ** 31 });
- * 
+ * // as an es module
+ * import {randomNumberGenerator} from './lib/number_systems';
+ * // as a commonjs module
+ * const {randomNumberGenerator} = require('./lib/number_systems');
+ *
+ *
+ * const generator = randomNumberGenerator({
+ *    seed: 0,
+ *    a: 1103515245,
+ *    c: 12345,
+ *    m: 2 ** 31
+ * });
+ *
  * const randomNumber = generator.next().value;
- * 
+ *
  * console.log(randomNumber); // 12345
- * 
- * as a cli tool:
- * 
- * node lib/randomNumberGenerator/index.js
- * // 12345
  * ```
- * 
+ *
+ * @example
+ * ```bash
+ *
+ * # as a cli tool:
+ * node lib/number_systems/algorithms/pseudo-random-generator/index.js
+ * # 12345
+ * ```
  */
 
 export default function randomNumberGenerator(props: {
@@ -91,9 +100,10 @@ export default function randomNumberGenerator(props: {
 
 // as a cli tool:
 
-// node lib/randomNumberGenerator/index.js
+// node lib/number_systems/algorithms/pseudo-random-generator/index.js
 
-if (process?.argv[1]?.includes(path.normalize('pseudo-random-generator/index.ts')) || process?.argv[1]?.includes(path.normalize('pseudo-random-generator/index.js'))) {
+if (process?.argv[1]?.includes(normalizePath('pseudo-random-generator/index.ts'))
+    || process?.argv[1]?.includes(normalizePath('pseudo-random-generator/index.js'))) {
     const generator = randomNumberGenerator({ seed: 0, a: 11345268, c: 12345, m: 2 ** 31 });
 
     const n = Math.floor(Math.random() * Math.random() * 1000);

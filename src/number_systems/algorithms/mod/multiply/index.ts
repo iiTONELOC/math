@@ -1,5 +1,5 @@
 import mod from '../index';
-import * as path from 'path';
+import { normalizePath } from '../../../../utils';
 
 /**
  * @param a number (int) - the first number to multiply
@@ -19,24 +19,33 @@ import * as path from 'path';
  * 36 mod 6 = 0
  * ```
  * ```ts
- *  import modularMultiplication from './modularMultiplication';
- * or
- * const modularMultiplication = require('./modularMultiplication').default;
  * 
+ * // as an es module
+ * import {modularMultiplication} from './lib/number_systems';
+ * // as a commonjs module
+ * const {modularMultiplication} = require('./lib/number_systems');
+ *
+ *
  * const modularProduct:number = modularMultiplication(4, 9, 6);
+ *
  * console.log(modularProduct); // 0
- * 
- * as a cli tool:
- * node lib/mod/multiply/index.js 4 9 6
- * // (4 * 9) mod 6 = 0
+ * ```
+ * @example
+ * ```bash
+ * # as a cli tool:
+ *
+ * node lib/number_systems/algorithms/mod/multiply/index.js 4 9 6
+ * # (4 * 9) mod 6 = 0
  * ```
  */
 export default function modularMultiplication(a: number, b: number, z: number): number {
     return mod(a * b, z);
 }
 
-if (process.argv[1]?.includes(path.normalize('mod/multiply/index.ts'))
-    || process.argv[1]?.includes(path.normalize('mod/multiply/index.js'))) {
+// cli
+// node lib/number_systems/algorithms/mod/multiply/index.js 4 9 6
+if (process.argv[1]?.includes(normalizePath('mod/multiply/index.ts'))
+    || process.argv[1]?.includes(normalizePath('mod/multiply/index.js'))) {
     const a: number = parseInt(process.argv[2], 10);
     const b: number = parseInt(process.argv[3], 10);
     const z: number = parseInt(process.argv[4], 10);

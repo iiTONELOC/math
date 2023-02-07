@@ -1,4 +1,4 @@
-import * as path from 'path';
+import { normalizePath } from '../../../../utils';
 import mod from '..';
 
 /*
@@ -20,14 +20,16 @@ export enum Operation {
  * @param z - number (int) - term 3
  * @param m - number (int) - modulus
  * @returns - number (int) - the result of the arithmetic expression
- * 
+ *
  * @example
  * ```ts
- * import arithmeticExpression from './arithmeticExpression';
- * or
- * const arithmeticExpression = require('./arithmeticExpression').default;
- * 
- * let result = arithmeticExpression({
+ * // as an es module
+ * import {arithmeticExpression} from './lib/number_systems';
+ * // as a commonjs module
+ * const {arithmeticExpression} = require('./lib/number_systems');
+ *
+ * // (43^17 + 32^1 + 139^1) mod 7
+ * const result = arithmeticExpression({
  *    values: [43, 32, 139],
  *    exponents: [17, 1, 1],
  *    operations: [Operation.ADDITION, Operation.ADDITION],
@@ -35,11 +37,14 @@ export enum Operation {
  * });
  *
  * console.log(result); // 4
+ * ```
  *
- * or as cli
- * node lib/mod/arithmeticExpression/index.js 43 32 139 17 1 1 + * 7
- * 
- * // (43^17 + 32^1 + 139^1) mod 7 = 4
+ * ```bash
+ *
+ * # or as cli
+ * node lib/number_systems/algorithms/mod/arithmeticExpression/index.js 43 32 139 17 1 1 + * 7
+ *
+ * # (43^17 + 32^1 + 139^1) mod 7 = 4
  * ```
  */
 
@@ -149,9 +154,9 @@ export default function arithmeticExpression(props: { // NOSONAR
 }
 
 // provide a cli interface
-
-if (process.argv[1]?.includes(path.normalize('mod/arithmeticExpression/index.ts'))
-    || process.argv[1]?.includes(path.normalize('mod/arithmeticExpression/index.js'))) {
+// node lib/number_systems/algorithms/mod/arithmeticExpression/index.js 43 32 139 17 1 1 + * 7
+if (process.argv[1]?.includes(normalizePath('mod/arithmeticExpression/index.ts'))
+    || process.argv[1]?.includes(normalizePath('mod/arithmeticExpression/index.js'))) {
 
     // split the arguments into an array
     const args = process.argv.slice(2);

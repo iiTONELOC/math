@@ -1,12 +1,10 @@
-import * as path from 'path';
+import { normalizePath } from '../../../utils';
 
 /*
 Input: Integers n and d > 0.
 Output: q = n div d, and r = n mod d.
-*/
 
-/**
- * The Division Algorithm
+* The Division Algorithm
  *
  * q := 0
  * r := n
@@ -23,6 +21,9 @@ Output: q = n div d, and r = n mod d.
  *  q := q + 1
  *  r := r - d
  *
+*/
+
+/**
  * Calculate the quotient and remainder of two integers
  *
  * @param n - number (int) - the dividend
@@ -37,22 +38,28 @@ Output: q = n div d, and r = n mod d.
  * ```
  *
  * ```ts
- * import division from './division';
- * or
- * const division = require('./division').default;
+ *
+ * // as an es module
+ * import {division} from './lib/number_systems';
+ * // as a commonjs module
+ * const {division} = require('./lib/number_systems');
+ *
  *
  * const [q, r]:number[] = division(10, 3);
+ *
  * console.log(q, r); // 3 1
+ * ```
  *
- * as a cli program
+ * @example
+ * ```bash
+ * # as a cli program
  *
- * node lib/division/index.js 10 3
- * // 10 div 3 = 3
+ * node lib/number_systems/algorithms/division/index.js 10 3
+ * # 10 div 3 = 3
  *
- * node lib/division/index.js 10 3 --show-mod
- *
- * // 10 div 3 = 3 and 10 mod 3 = 1
- *```
+ * node lib/number_systems/algorithms/division/index.js 10 3 --show-mod
+ * # 10 div 3 = 3 and 10 mod 3 = 1
+ * ```
  */
 
 export default function division(n: number, d: number): [number, number] {
@@ -85,7 +92,11 @@ export default function division(n: number, d: number): [number, number] {
 }
 
 // provide a cli interface
-if (process?.argv[1]?.includes(path.normalize('division/index.ts')) || process?.argv[1]?.includes(path.normalize('division/index.js'))) {
+//  node lib/number_systems/algorithms/division/index.js 10 3
+// or
+// node lib/number_systems/algorithms/division/index.js 10 3 --show-mod
+if (process?.argv[1]?.includes(normalizePath('division/index.ts'))
+    || process?.argv[1]?.includes(normalizePath('division/index.js'))) {
 
     const n = parseInt(process.argv[2], 10);
     const d = parseInt(process.argv[3], 10);

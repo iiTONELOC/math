@@ -1,5 +1,5 @@
 import mod from '../index';
-import * as path from 'path';
+import { normalizePath } from '../../../../utils';
 
 /**
  * 
@@ -21,16 +21,24 @@ import * as path from 'path';
  * ```
  *
  * ```ts
- * import modularAddition from './modularAddition';
- * or
- * const modularAddition = require('./modularAddition').default;
- * 
- * const modularSum:number = modularAddition(6, 8, 4);
- * console.log(modularSum); // 2
  *
- * as a cli tool:
- * node lib/mod/add/index.js 6 8 4
- * // (6 + 8) mod 4 = 2
+ * // as an es module
+ * import {modularAddition} from './lib/number_systems';
+ * // as a commonjs module
+ * const {modularAddition} = require('./lib/number_systems');
+ *
+ *
+ * const modularSum:number = modularAddition(6, 8, 4);
+ *
+ * console.log(modularSum); // 2
+ * ```
+ *
+ * @example
+ * ```bash
+ * # as a cli tool:
+ *
+ * node lib/number_systems/algorithms/mod/add/index.js 6 8 4
+ * # (6 + 8) mod 4 = 2
  * ```
  */
 export default function modularAddition(a: number, b: number, z: number): number {
@@ -38,9 +46,9 @@ export default function modularAddition(a: number, b: number, z: number): number
 }
 
 // cli api
-
-if (process.argv[1]?.includes(path.normalize('mod/add/index.ts'))
-    || process.argv[1]?.includes(path.normalize('mod/add/index.js'))) {
+// node lib/number_systems/algorithms/mod/add/index.js 6 8 4
+if (process.argv[1]?.includes(normalizePath('mod/add/index.ts'))
+    || process.argv[1]?.includes(normalizePath('mod/add/index.js'))) {
     const a: number = parseInt(process.argv[2], 10);
     const b: number = parseInt(process.argv[3], 10);
     const z: number = parseInt(process.argv[4], 10);

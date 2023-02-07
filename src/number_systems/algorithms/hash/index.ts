@@ -1,4 +1,4 @@
-import * as path from 'path';
+import { normalizePath } from '../../../utils';
 
 /**
  * Hash input using the h(n) = cn mod T algorithm
@@ -22,19 +22,23 @@ import * as path from 'path';
  * ```
  *
  * ```ts
- * import hash from './hash';
- * or
- * const hash = require('./hash').default;
+ * // as an es module
+ * import {hash} from './lib/number_systems';
+ * // as a commonjs module
+ * const {hash} = require('./lib/number_systems');
+ *
  *
  * const hashValue:number = hash(6, 3, 4);
  * console.log(hashValue); // 2
- *
- * as a cli tool:
- *
- * node lib/hash/index.js 6 3 4
- * // 6 mod 4 = 2
  * ```
  *
+ * @example
+ * ```bash
+ * # as a cli tool:
+ *
+ * node lib/number_systems/algorithms/hash/index.js 6 3 4
+ * # 6 mod 4 = 2
+ * ```
 */
 
 export default function hash(n: number, c: number, T: number): number {
@@ -60,9 +64,9 @@ export default function hash(n: number, c: number, T: number): number {
 
 
 // as a cli tool:
-
-if (process?.argv[1]?.includes(path.normalize('hash/index.ts')) ||
-    process?.argv[1]?.includes(path.normalize('hash/index.js'))) {
+// node lib/number_systems/algorithms/hash/index.js 6 3 4
+if (process?.argv[1]?.includes(normalizePath('hash/index.ts')) ||
+    process?.argv[1]?.includes(normalizePath('hash/index.js'))) {
 
     const n: number = parseInt(process.argv[2], 10);
     const c: number = parseInt(process.argv[3], 10);

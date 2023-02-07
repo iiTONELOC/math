@@ -1,5 +1,5 @@
 import division from '../division';
-import * as path from 'path';
+import { normalizePath } from '../../../utils';
 
 /**
  * Calculates the remainder of a division of two numbers
@@ -16,16 +16,16 @@ import * as path from 'path';
  * ```
  *
  * ```ts
- * import mod from './mod';
+ * import {mod} from './lib/number_systems';
  * or
- * const mod = require('./mod').default;
+ * const {mod} = require('./lib/number_systems');
  *
  * const r:number = mod(10, 3);
  * console.log(r); // 1
  *
  * as a cli program
  *
- * node lib/mod/index.js 10 3
+ * node lib/number_systems/algorithms/mod/index.js 10 3
  * // 10 mod 3 = 1
  * ```
  */
@@ -36,8 +36,9 @@ export default function mod(x: number, y: number): number {
 }
 
 // run as a cli program
-if (process.argv[1]?.includes(path.normalize('mod/index.ts'))
-    || process.argv[1]?.includes(path.normalize('mod/index.js'))) {
+// node lib/number_systems/algorithms/mod/index.js 10 3
+if (process.argv[1]?.includes(normalizePath('mod/index.ts'))
+    || process.argv[1]?.includes(normalizePath('mod/index.js'))) {
     const x = parseInt(process.argv[2], 10);
     const y = parseInt(process.argv[3], 10);
 
