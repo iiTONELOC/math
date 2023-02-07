@@ -31,7 +31,7 @@ import * as path from 'path';
  * // (4 * 9) mod 6 = 0
  * ```
  */
-export function modularMultiplication(a: number, b: number, z: number): number {
+export default function modularMultiplication(a: number, b: number, z: number): number {
     return mod(a * b, z);
 }
 
