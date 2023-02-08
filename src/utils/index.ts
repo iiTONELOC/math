@@ -6,13 +6,17 @@ import * as path from 'path';
  * @returns string - the normalized path
  * @example
  * ```ts
+ * // es module
  * import {normalizePath} from './lib/utils';
- * or
+ * // common js
  * const {normalizePath} = require('./lib/utils');
  *
+ *
  * const normalizedPath = normalizePath('path/to/file');
- * console.log(normalizedPath); // path\\to\\file - on windows
- * console.log(normalizedPath); // path/to/file - on linux, unix, or mac
+ *
+ * console.log(normalizedPath);
+ * // path\\to\\file - on windows
+ * // path/to/file - on linux, unix, or mac
  * ```
  */
 export function normalizePath(_path: string): string {

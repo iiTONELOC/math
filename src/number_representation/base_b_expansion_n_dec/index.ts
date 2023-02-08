@@ -32,7 +32,7 @@ import { normalizePath } from '../../utils';
  * ```
  */
 
-export default function baseBExpansionOfN(props: { // NOSONAR
+export default function baseBExpansionOfNDec(props: { // NOSONAR
     n: number;
     b: number;
 }
@@ -81,7 +81,7 @@ if (process.argv[1]?.includes(normalizePath('base_b_expansion_n/index.ts'))
     || process.argv[1]?.includes(normalizePath('base_b_expansion_n/index.js'))) {
     const n = Number(process.argv[2]);
     const b = Number(process.argv[3]);
-    const result = baseBExpansionOfN({ n, b });
+    const result = baseBExpansionOfNDec({ n, b });
 
     console.log(`${n} base ${b} = ${result}`);
 }
