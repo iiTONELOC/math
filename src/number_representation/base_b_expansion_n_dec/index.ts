@@ -77,8 +77,8 @@ export default function baseBExpansionOfNDec(props: { // NOSONAR
 
 // cli usage
 //  node ./lib/number_representation/base_b_expansion_n/index.js 410 5
-if (process.argv[1]?.includes(normalizePath('base_b_expansion_n/index.ts'))
-    || process.argv[1]?.includes(normalizePath('base_b_expansion_n/index.js'))) {
+if (process.argv[1]?.includes(normalizePath('base_b_expansion_n_dec/index.ts'))
+    || process.argv[1]?.includes(normalizePath('base_b_expansion_n_dec/index.js'))) {
     const n = Number(process.argv[2]);
     const b = Number(process.argv[3]);
     const result = baseBExpansionOfNDec({ n, b });
