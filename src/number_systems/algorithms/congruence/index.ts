@@ -39,7 +39,8 @@ import { normalizePath } from '../../../utils';
  * ```
  */
 export default function congruence(x: number, y: number, m: number): boolean {
-    return mod(x, m) === mod(y, m);
+    // take the absolute value of the distance and see if the mod is 0
+    return mod(x - y, m) === 0;
 }
 
 // cli api
