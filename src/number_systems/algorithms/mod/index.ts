@@ -1,5 +1,4 @@
-import division from '../division';
-import { normalizePath } from '../../../utils';
+import { normalizePath } from "../../../utils";
 
 /**
  * Calculates the remainder of a division of two numbers
@@ -9,7 +8,7 @@ import { normalizePath } from '../../../utils';
  * @returns number - the remainder
  * @throws Error - if y is less than or equal to 0
  * @throws Error - if x or y are not integers
- * 
+ *
  * @example
  * ```md
  * What is the value of 10 mod 3?
@@ -31,21 +30,35 @@ import { normalizePath } from '../../../utils';
  */
 
 export default function mod(x: number, y: number): number {
-    const [, r]: number[] = division(x, y);
-    return r;
+  if (!Number.isInteger(x) || !Number.isInteger(y)) {
+    throw new Error("x and y must be integers");
+  }
+
+  if (y <= 0) {
+    throw new Error("y must be greater than 0");
+  }
+
+  // if x is negative, convert it to a positive number by adding y to it
+  while (x < 0) {
+    x += y;
+  }
+
+  return x % y;
 }
 
 // run as a cli program
 // node lib/number_systems/algorithms/mod/index.js 10 3
-if (process.argv[1]?.includes(normalizePath('mod/index.ts'))
-    || process.argv[1]?.includes(normalizePath('mod/index.js'))) {
-    const x = parseInt(process.argv[2], 10);
-    const y = parseInt(process.argv[3], 10);
+if (
+  process.argv[1]?.includes(normalizePath("mod/index.ts")) ||
+  process.argv[1]?.includes(normalizePath("mod/index.js"))
+) {
+  const x = parseInt(process.argv[2], 10);
+  const y = parseInt(process.argv[3], 10);
 
-    try {
-        const r: number = mod(x, y);
-        r >= 0 && console.log(`${x} mod ${y} = ${r}`);
-    } catch (error) {
-        console.error(error.message);
-    }
+  try {
+    const r: number = mod(x, y);
+    r >= 0 && console.log(`${x} mod ${y} = ${r}`);
+  } catch (error) {
+    console.error(error.message);
+  }
 }

@@ -58,7 +58,6 @@ export default function factorial(n: number, memo = _factorialMemo): number {
     let result = 1;
 
     for (let i = 1; i <= n; i++) {
-
         result *= i;
         memo[i] = result;
     }

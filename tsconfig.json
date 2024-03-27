@@ -1,11 +1,13 @@
 {
     "compilerOptions": {
+        "strict": false,
         "module": "commonjs",
         "declaration": true,
         "removeComments": true,
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "allowSyntheticDefaultImports": true,
+        "forceConsistentCasingInFileNames": true,
         "target": "es2017",
         "outDir": "./lib",
         "baseUrl": "./src",

@@ -4,4 +4,5 @@ lib
 .env
 .vscode
 mod_26_discussion_2
+.hintrc
 ```

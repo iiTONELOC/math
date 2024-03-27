@@ -12,6 +12,10 @@ export default function gcd(a: number, b: number): number {
     throw new Error("Both numbers must be integers");
   }
 
+  // ensure that a and b are positive, if they are negative, convert them to positive
+  a = Math.abs(a);
+  b = Math.abs(b);
+
   if (b === 0) {
     return a;
   }
@@ -34,5 +38,4 @@ if(process?.argv[1].includes('gcd/index.js')||
     } catch (error) {
         console.error(error.message);
     }
-  
 }
