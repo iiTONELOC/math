@@ -59,7 +59,8 @@ export default function exponentiation(x: number, y: number): number {
     // x = x^2
     x *= x;
     // y = y / 2
-    y = Math.floor(y / 2);
+    // divide using the bitwise right shift operator
+    y >>= 1;
   }
 
   return result;

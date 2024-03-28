@@ -45,22 +45,18 @@ export default function exponentiation(x: number, y: number, m: number): number 
     throw new Error('y must be greater than 0');
   }
 
-  // c = x mod m
-  let c = x % m;
-  // d = y
-  let d = y;
-  // result = 1
   let result = 1;
+  x %= m;
 
-  while (d > 0) {
-    // if d is odd, multiply result by c
-    if (d % 2 === 1) {
-      result = (result * c) % m;
+  while (y > 0) {
+    // if y is odd, multiply result by x
+    if (y % 2 === 1) {
+      result = (result * x) % m;
     }
 
-    // divide d by 2 and take the floor
-    d = Math.floor(d / 2);
-    c = (c * c) % m;
+    // divide y by 2 by right shifting it
+    y = y >> 1;
+    x = (x * x) % m;
   }
 
   return result;
