@@ -7,19 +7,27 @@ import {normalizePath} from '../../../utils';
  *
  * @param n - number (int) - the number to find the prime factors of
  *
- * @returns number[] - the prime factors of n
+ * @returns number[] - the largest prime factors of n
+ *
+ *
+ * @note
+ *
+ * Pseudo Code:
+ *
+ * FermatFactor(N): // should be an odd number
+ *  a:= ceiling(sqrt(N))
+ *
+ *  b2:= a*a - N
+ *
+ *  while b2 is not a square:
+ *    a:= a + 1
+ *    b2:= a*a - N
+ *  end while
+ *
+ *  return (a-sqrt(b2), a + sqrt(b2))
  *
  * @reference
- * https://en.wikipedia.org/wiki/Fermat's_factorization_method#
- *
- * @example
- * ```md
- * What are the prime factors of 17?
- *
- * 17 = 1 * 17
- *
- * The prime factors of 17 are 1 and 17
- * ```
+ * https://en.wikipedia.org/wiki/Fermat%27s_factorization_method
  *
  * @example
  *

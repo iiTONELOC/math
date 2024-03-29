@@ -12,6 +12,31 @@ import {normalizePath} from '../../../../utils';
  * @throws Error - if y is less than or equal to 0
  * @throws Error - if x, y or m are not integers
  *
+ *@note
+ * Pseudo Code:
+ *
+ * ModExpRepeatedSquaring(g,x,p)->r
+ *      Input:
+ *        g: integer base
+ *        x: integer exponent
+ *        p: integer modulus
+ *     Output:
+ *        r: integer result of g^x mod p
+ *   c:= g mod p
+ *   d:= x
+ *   r:= 1
+ *
+ *   while d > 0 do
+ *      if d mod 2 = 1 then
+ *        r:= r*c mod p
+ *      end if
+ *
+ *     d:= d / 2
+ *     c:= c^2 mod p
+ *  end while
+ *
+ *  return r
+ *
  *
  * @References
  * ```md

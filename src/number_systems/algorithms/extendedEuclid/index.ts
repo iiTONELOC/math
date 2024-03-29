@@ -10,17 +10,21 @@ import {normalizePath} from '../../../utils';
  * @param a - number (int) - the first number
  * @param b - number (int) - the second number
  *
- * @returns `{ gcd: number; x: number; y: number; }` - the greatest common divisor and the linear combination of a and b
+ * @returns `{ gcd: number; x: number; y: number; }` - the greatest common divisor and the linear
+ *  combination of a and b
  * @throws Error - if a or b are not integers
  *
  * @notes
  * The extended Euclidean algorithm is used in many applications, including cryptography.
  * It is used to find the modular multiplicative inverse of two numbers.
- * The modular multiplicative inverse of two numbers a and b is an integer x such that ax ≡ 1 (mod b).
+ * The modular multiplicative inverse of two numbers a and b is an integer x such that
+ * ax ≡ 1 (mod b).
  * This is used in RSA encryption to find the private key.
  *
- * The algorithm is based on the observation that the greatest common divisor of two numbers a and b is the same as the greatest common divisor of b and the remainder of a divided by b.
- * The algorithm recursively applies this observation until the remainder is 0, at which point the greatest common divisor is found.
+ * The algorithm is based on the observation that the greatest common divisor of two numbers a and b
+ *  is the same as the greatest common divisor of b and the remainder of a divided by b.
+ * The algorithm recursively applies this observation until the remainder is 0, at which point the
+ *  greatest common divisor is found.
  *
  * Pseudocode:
  *
@@ -36,7 +40,7 @@ import {normalizePath} from '../../../utils';
  *
  * @References
  * ```md
- * Reference for Psuedo Code for the Extended Euclidean Algorithm:
+ * Reference for Pseudo Code for the Extended Euclidean Algorithm:
  * Louridas, P. (2017). Chapter 5: Split Secrets. In Real-world algorithms: A beginner's guide (pp. 134-135). MIT Press.
  *```
  *
