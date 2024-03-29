@@ -1,5 +1,5 @@
-import { mod } from '../../number_systems';
-import { normalizePath } from '../../utils';
+import modularExponentiation from 'number_systems/algorithms/mod/exponentiation';
+import {normalizePath} from '../../utils';
 
 /**
  * Decrypts a message using RSA encryption method
@@ -29,20 +29,20 @@ import { normalizePath } from '../../utils';
  * ```
  */
 export default function rsaDecrypt(c: number, d: number, N: number): number {
-    return mod((c ** d), N);
+  return parseInt(modularExponentiation(c, d, N).toString());
 }
-
 
 // cli usage
 // node ./lib/decryption/rsa/index.js 18 5 26
-if (process.argv[1]?.includes(normalizePath('decryption/rsa/index.ts'))
-    || process.argv[1]?.includes(normalizePath('decryption/rsa/index.js'))) {
+if (
+  process.argv[1]?.includes(normalizePath('decryption/rsa/index.ts')) ||
+  process.argv[1]?.includes(normalizePath('decryption/rsa/index.js'))
+) {
+  const c = Number(process.argv[2]);
+  const d = Number(process.argv[3]);
+  const N = Number(process.argv[4]);
 
-    const c = Number(process.argv[2]);
-    const d = Number(process.argv[3]);
-    const N = Number(process.argv[4]);
+  const result = rsaDecrypt(c, d, N);
 
-    const result = rsaDecrypt(c, d, N);
-
-    console.log(`${c} decrypted with key ${d} and modulus ${N} = ${result}`);
+  console.log(`${c} decrypted with key ${d} and modulus ${N} = ${result}`);
 }

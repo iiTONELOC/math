@@ -56,9 +56,9 @@ export default function exponentiation(x: number, y: number): number {
       result *= x;
     }
 
-    // x = x^2
+    // square the base
     x *= x;
-    // y = y / 2
+
     // divide using the bitwise right shift operator
     y >>= 1;
   }

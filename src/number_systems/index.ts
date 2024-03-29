@@ -1,12 +1,17 @@
 export {
-    mod,
-    hash,
-    congruence,
-    pseudoRandom,
-    modularDivision,
-    modularAddition,
-    modularMultiplication,
-    arithmeticExpression
+  mod,
+  gcd,
+  hash,
+  congruence,
+  pseudoRandom,
+  extendedEuclid,
+  modularDivision,
+  modularAddition,
+  primeFactorization,
+  modularMultiplication,
+  arithmeticExpression,
+  modularExponentiation,
+  exponentiationBySquaring,
 } from './algorithms';
 
-export { Operation } from './algorithms/mod/arithmeticExpression';
+export {Operation} from './algorithms/mod/arithmeticExpression';

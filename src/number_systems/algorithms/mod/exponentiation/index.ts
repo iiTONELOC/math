@@ -3,14 +3,24 @@ import {normalizePath} from '../../../../utils';
 /**
  * Calculates Exponents using the Modular Exponentiation By Repeated Squaring Algorithm
  *
- * @param x - number (int) - the base
- * @param y - number (int) - the exponent
- * @param m - number (int) - the modulus
+ * @param x - bigint|number - the base
+ * @param y - bigint|number - the exponent
+ * @param m - bigint|number - the modulus
  *
- * @returns number - the remainder
+ * @returns bigint - The final result of x^y mod m
  *
  * @throws Error - if y is less than or equal to 0
  * @throws Error - if x, y or m are not integers
+ *
+ *
+ * @References
+ * ```md
+ * Reference for Modular Exponentiation By Repeated Squaring:
+ * Louridas, P. (2017). Chapter 4: Secrets. In Real-world algorithms: A beginner's guide (p. 121). MIT Press.
+ *
+ * Reference for BigInts in JavaScript:
+ * https://www.w3schools.com/js/js_bigint.asp
+ *```
  *
  * @example
  * ```md
@@ -26,8 +36,8 @@ import {normalizePath} from '../../../../utils';
  * or
  * const {exponentiation} = require('./lib/number_systems/mod');
  *
- * const r:number = exponentiation(10, 3, 3);
- * console.log(r); // 1
+ * const r: bigint = exponentiation(10n, 3n, 3n);
+ * console.log(r); // 1n
  *
  * as a cli program
  *
@@ -36,31 +46,51 @@ import {normalizePath} from '../../../../utils';
  * // 10^3 mod 3 = 1
  * ```
  */
-export default function exponentiation(x: number, y: number, m: number): number {
-  if (!Number.isInteger(x) || !Number.isInteger(y) || !Number.isInteger(m)) {
+export default function modularExponentiation(
+  x: bigint | number,
+  y: bigint | number,
+  m: bigint | number,
+): bigint {
+  if (
+    !Number.isInteger(Number(x)) ||
+    !Number.isInteger(Number(y)) ||
+    !Number.isInteger(Number(m))
+  ) {
     throw new Error('x, y, and m must be integers');
   }
 
-  if (y <= 0) {
+  // if numbers were provided instead of BigInts, convert them to BigInts
+  if (typeof x === 'number') x = BigInt(x);
+  if (typeof y === 'number') y = BigInt(y);
+  if (typeof m === 'number') m = BigInt(m);
+
+  if (y <= 0n) {
     throw new Error('y must be greater than 0');
   }
 
-  let result = 1;
+  // initialize result to 1
+  let result = 1n;
+
+  // take the modulus of the base to prevent overflow
   x %= m;
 
-  while (y > 0) {
-    // if y is odd, multiply result by x
-    if (y % 2 === 1) {
+  // while the exponent is greater than 0
+  while (y > 0n) {
+    // if the exponent is odd, multiply result by x mod m
+    if (y % 2n === 1n) {
       result = (result * x) % m;
     }
 
-    // divide y by 2 by right shifting it
-    y = y >> 1;
+    // have to divide the exponent by 2, since BigInts don't have a right shift operator
+    y = y / 2n;
+
+    // square the base and take the modulus
     x = (x * x) % m;
   }
 
   return result;
 }
+
 // run as a cli program
 // node lib/number_systems/algorithms/mod/exponentiation/index.js 10 3 3
 if (
@@ -68,12 +98,12 @@ if (
   process.argv[1]?.includes(normalizePath('mod/exponentiation/index.js'))
 ) {
   try {
-    const x = parseInt(process.argv[2], 10);
-    const y = parseInt(process.argv[3], 10);
-    const m = parseInt(process.argv[4], 10);
+    const x = BigInt(process.argv[2]);
+    const y = BigInt(process.argv[3]);
+    const m = BigInt(process.argv[4]);
 
-    const r: number = exponentiation(x, y, m);
-    r >= 0 && console.log(`${x}^${y} mod ${m} = ${r}`);
+    const r: bigint = modularExponentiation(x, y, m);
+    r >= 0n && console.log(`${x.toString()}^${y.toString()} mod ${m.toString()} = ${r.toString()}`);
   } catch (error) {
     console.error(error.message);
   }

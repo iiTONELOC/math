@@ -34,19 +34,17 @@ import {normalizePath} from '../../../utils';
  *          (r, x, y) = ExtendedEuclid(b, a mod b)
  *          return (r, y, x - ⌊a/b⌋*y)
  *
- *
  * @References
  * ```md
  * Reference for Psuedo Code for the Extended Euclidean Algorithm:
  * Louridas, P. (2017). Chapter 5: Split Secrets. In Real-world algorithms: A beginner's guide (pp. 134-135). MIT Press.
  *```
-
- 
+ *
  * @example
  * ```md
- * // es module
+ * # es module
  * import extendedEuclid from './lib/number_systems/algorithms/extendedEuclid';
- * // common js
+ * # common js
  * const extendedEuclid = require('./lib/number_systems/algorithms/extendedEuclid');
  * console.log(extendedEuclid(10, 5)); // { gcd: 5, x: 0, y: 1 }
  * ```
